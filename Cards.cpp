@@ -103,14 +103,13 @@ int getPickCountNeededForFourSuits(bool verbose) {
 
         if (!suitSeen[suit]) {
             suitSeen[suit] = true;
-            std::cout << getRankString(rank) << " of " << getSuitString(suit) << '\n';
+            if (verbose)
+                std::cout << getRankString(rank) << " of " << getSuitString(suit) << '\n';
         }
         pickCount++;
     }
 
-    // for (int i = 0; i < std::size(suitSeen); i++) {
-    //     std::cout << suitSeen[i] << '\n';
-    // }
-
+    if (verbose)
+        std::cout << "Picks needed: " << pickCount << '\n';
     return pickCount;
 }
