@@ -92,14 +92,32 @@ bool allArrayElementsAreTrue(bool *boolArray, const int size) {
 //      If verbose is true, generate output cards picked & the pick count.
 // - return: an int representing the number of card picks it takes to cover 4 suits.
 // getPickCountNeededForFourSuits();
-int getPickCountNeededForFourSuits(bool verbose) {
-    bool suitSeen[4] = {false};
+int getPickCountNeededForFourSuits(bool verbose, bool useReplacement) {
+    bool suitSeen[4] = {false}; // Keeps track of whether a card with that suit has been seen
+    std::vector<int> cards; // This vector is only used if useReplacement is set to true
+
+    if (useReplacement) {
+        for (int i = 0; i < Constants::CARD_COUNT; i++) {
+            cards.push_back(i);
+            // std::cout << cards.at(i) << std::endl;
+        }
+    }
 
     int pickCount = 0;
     while (!allArrayElementsAreTrue(suitSeen, Constants::NUM_SUITS)) {
-        int card = pickRandomCard();
-        int rank = card % 13;
-        int suit = card % 4;
+        int card;
+
+        if (useReplacement) {
+            int cardIndex = pickRandomNumberInRange(0, cards.size()-1);
+            card = cards[cardIndex];
+            cards.erase(cards.begin() + cardIndex); // Erase the card at the picked spot
+        }
+        else {
+            card = pickRandomCard();
+        }
+
+        const int rank = card % 13;
+        const int suit = card % 4;
 
         if (!suitSeen[suit]) {
             suitSeen[suit] = true;

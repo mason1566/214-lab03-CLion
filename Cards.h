@@ -12,6 +12,8 @@ namespace Constants {
 
     #include "Utility.h"
 
+    #include <vector>
+
     // Pick a random card form the deck (represented by an int between 0-52)
     // - params: none
     // - return: an int between 0 - 51
@@ -65,6 +67,6 @@ namespace Constants {
     //      If verbose is true, generate output cards picked & the pick count.
     // - return: an int representing the number of card picks it takes to cover 4 suits.
     // getPickCountNeededForFourSuits();
-    int getPickCountNeededForFourSuits(bool verbose = true);
+    int getPickCountNeededForFourSuits(bool verbose = true, bool useReplacement = true);
 
 #endif

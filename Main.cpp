@@ -8,7 +8,7 @@ int main() {
 
     int totalCardsDrawn = 0;
     for (int i = 0; i < ITER_COUNT; i++) {
-        totalCardsDrawn += getPickCountNeededForFourSuits(false);
+        totalCardsDrawn += getPickCountNeededForFourSuits(false, true);
     }
     std::cout << "Average cards drawn: " << (float) totalCardsDrawn / ITER_COUNT << std::endl;
 
